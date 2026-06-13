@@ -1,39 +1,1500 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>خريطة التحول الرقمي · لجنة النظر في الأعذار</title>
-
+<title>منصة تَزامُن لخدمات التصوير — كلية إدارة الأعمال</title>
+<meta name="description" content="دليل المستخدم الرسمي لمنصة تَزامُن لخدمات التصوير عبر Microsoft Bookings — كلية إدارة الأعمال، جامعة الطائف">
+<meta name="theme-color" content="#071e11">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-    --emerald-900:#072a20; --emerald-800:#0a3a2c; --emerald:#0f4c3a;
-    --emerald-600:#166952; --emerald-500:#1f7d63;
-    --gold-700:#a47e2b; --gold:#c9a44c; --gold-400:#e6c976; --gold-200:#f3e4bd;
-    --cream:#f7f4ec; --cream-deep:#efe9db; --paper:#fffdf8;
-    --ink:#23271f; --muted:#6b7166; --danger:#9a3324; --danger-soft:#fbeae6;
+  :root {
+    --emerald: #1a5c3a;
+    --emerald-dark: #0f3d26;
+    --emerald-deep: #071e11;
+    --emerald-light: #2a7a50;
+    --emerald-glow: #3da06a;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-bright: #f5d97a;
+    --gold-pale: #f0e4b8;
+    --white: #ffffff;
+    --text-main: rgba(255, 255, 255, 0.92); 
+    --text-muted: rgba(255, 255, 255, 0.75); 
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { scroll-behavior:smooth; overflow-x:hidden; }
+  body {
+    font-family: 'IBM Plex Sans Arabic', 'Readex Pro', sans-serif;
+    background: var(--emerald-deep);
+    color: var(--white);
+    overflow-x: hidden;
+    font-weight: 500; 
+  }
+  ::-webkit-scrollbar { width:5px; }
+  ::-webkit-scrollbar-track { background:var(--emerald-deep); }
+  ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
+  a { text-decoration: none; }
+
+  /* ── NAV ── */
+  nav {
+    position:fixed; top:0; width:100%; z-index:100;
+    background:rgba(7,30,17,0.95);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(201,168,76,0.18);
+    padding:0 2.5rem;
+    display:flex; align-items:center; justify-content:space-between;
+    height:62px;
+  }
+  .nav-logo {
+    display:flex; align-items:center; gap:0.75rem;
+    font-family:'Readex Pro',sans-serif; font-size:0.88rem; font-weight:600;
+    color:var(--gold-light);
+  }
+  .nav-logo-icon {
+    width:34px; height:34px;
+    background:linear-gradient(135deg,var(--gold),var(--gold-light));
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem;
+    color: var(--emerald-deep);
+  }
+  .nav-links { display:flex; gap:0.1rem; list-style:none; }
+  .nav-links a {
+    color: var(--text-main);
+    font-size:0.85rem; font-weight:500;
+    padding:0.38rem 0.85rem; border-radius:6px;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .nav-links a:hover, .nav-links a.active-link { color:var(--gold-light); background:rgba(201,168,76,0.1); }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height:100vh; position:relative;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; padding-top:62px;
+  }
+  .hero-bg {
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 90% 70% at 15% 50%, rgba(61,160,106,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 80% at 85% 25%, rgba(201,168,76,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 95%, rgba(26,92,58,0.35) 0%, transparent 60%),
+      linear-gradient(155deg, #071e11 0%, #0d3320 45%, #071e11 100%);
+  }
+  .hero-grid {
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+    background-size:55px 55px;
+  }
+  .orb {
+    position:absolute; border-radius:50%;
+    filter:blur(70px); opacity:0.2;
+    animation:float 9s ease-in-out infinite;
+  }
+  .orb-1 { width:420px; height:420px; background:var(--emerald-glow); top:5%; right:-8%; }
+  .orb-2 { width:320px; height:320px; background:var(--gold); bottom:10%; left:-8%; animation-delay:3s; }
+  .orb-3 { width:220px; height:220px; background:var(--emerald-light); top:55%; left:38%; animation-delay:6s; }
+  @keyframes float { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-28px) scale(1.04)} }
+
+  .hero-content {
+    position:relative; z-index:2;
+    text-align:center; max-width:920px; padding:2rem;
+  }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:rgba(201,168,76,0.1);
+    border:1px solid rgba(201,168,76,0.28);
+    color:var(--gold-light); padding:0.48rem 1.2rem;
+    border-radius:50px; font-size:0.83rem; font-weight:600;
+    margin-bottom:2rem; animation:fadeUp 0.8s ease both;
+  }
+  .hero-badge-dot {
+    width:7px; height:7px; background:var(--gold-bright);
+    border-radius:50%; animation:pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.45;transform:scale(0.75)} }
+  
+  .hero-title {
+    font-family:'Readex Pro',sans-serif;
+    font-size:clamp(1.4rem, 3.5vw, 3.1rem);
+    font-weight:700; line-height:1.4; margin-bottom:1rem;
+    animation:fadeUp 0.8s ease 0.15s both;
+  }
+  .hero-title .line-gold { color:var(--gold-light); display:block; }
+  .hero-title .line-white { color:var(--white); display:block; font-size: 0.88em; margin-top: 0.2rem; }
+  .brand-highlight {
+    color: var(--gold-bright); font-weight: 800;
+    text-shadow: 0 0 25px rgba(245,217,122,0.4); letter-spacing: -0.02em;
+  }
+
+  .hero-subtitle {
+    font-size:1.1rem; font-weight:500; color: var(--text-main); line-height:1.85;
+    max-width:660px; margin:0 auto 2.5rem; animation:fadeUp 0.8s ease 0.3s both;
+  }
+  .hero-cta {
+    display:inline-flex; gap:1rem; flex-wrap:wrap; justify-content:center;
+    animation:fadeUp 0.8s ease 0.45s both;
+  }
+
+  .hero-info-box {
+    text-align:right; max-width:300px; border-radius:14px;
+    padding:1.25rem 1.5rem; line-height:1.75;
+  }
+  .hero-info-box--gold {
+    background:linear-gradient(135deg,var(--gold),var(--gold-light));
+    color:var(--emerald-deep); box-shadow:0 4px 22px rgba(201,168,76,0.28);
+  }
+  .hero-info-box--dark {
+    background:rgba(255,255,255,0.055); border:1px solid rgba(255,255,255,0.16);
+    color: var(--text-main);
+  }
+  .hero-info-box-title {
+    font-family:'Readex Pro',sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:0.45rem;
+  }
+  .hero-info-box--gold .hero-info-box-title, .hero-info-box--gold .hero-info-box-text { color:var(--emerald-dark); font-weight: 700; }
+  .hero-info-box-text { font-size:0.85rem; font-weight:500; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTIONS ── */
+  section { padding:6rem 2rem; }
+  .section-inner { max-width:1120px; margin:0 auto; overflow-x: hidden; }
+  .section-label {
+    display:inline-block; color:var(--gold); font-size:0.76rem;
+    font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    margin-bottom:0.7rem; padding:0.28rem 0.9rem;
+    border:1px solid rgba(201,168,76,0.28); border-radius:50px;
+    background:rgba(201,168,76,0.06);
+  }
+  .section-title {
+    font-family:'Readex Pro',sans-serif; font-size:clamp(1.75rem,3.5vw,2.7rem); font-weight:700;
+    line-height:1.28; margin-bottom:1rem;
+  }
+  .section-title span { color:var(--gold-light); }
+  .section-desc { color: var(--text-main); font-size:1.05rem; font-weight: 500; line-height:1.95; max-width:800px; }
+
+  /* ── INTRO ── */
+  #intro { background: linear-gradient(160deg, #071e11 0%, #0d3320 50%, #071e11 100%); position:relative; overflow:hidden; border-bottom: 1px solid rgba(201,168,76,0.1); }
+  #intro::before {
+    content:''; position:absolute; inset:0;
+    background-image: radial-gradient(rgba(201,168,76,0.04) 1.5px, transparent 1.5px);
+    background-size: 40px 40px;
+  }
+  .conclusion-inner { position:relative; z-index:1; }
+  .conclusion-quote {
+    max-width: 850px; margin: 0 auto 2.5rem; background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.2); border-right: 4px solid var(--gold);
+    border-radius: 0 14px 14px 0; padding: 2.5rem; position: relative;
+  }
+  .conclusion-quote-mark {
+    font-size: 5rem; line-height: 0.5; color: rgba(201,168,76,0.25);
+    font-family: Georgia, serif; position: absolute; top: 1.2rem; left: 1.5rem;
+  }
+  .conclusion-quote-text {
+    font-family: 'Readex Pro', sans-serif; font-size: 1.15rem; font-weight: 600;
+    color: var(--white); line-height: 2;
+  }
+
+  /* ── TABLE OF CONTENTS ── */
+  #toc { background: linear-gradient(180deg, #0d3320 0%, var(--emerald-deep) 100%); border-top: 1px solid rgba(201,168,76,0.1); }
+  .toc-wrapper {
+    max-width: 820px; margin: 3.5rem auto 0;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 20px; overflow: hidden;
+  }
+  .toc-header {
+    background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.06));
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    padding: 1.25rem 2rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .toc-header-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0; color: var(--emerald-deep);
+  }
+  .toc-header-text { font-family:'Readex Pro',sans-serif; font-size:1rem; font-weight:700; color:var(--gold-light); }
+  .toc-header-sub  { font-size:0.8rem; color: var(--text-muted); font-weight: 500; margin-top:0.1rem; }
+  .toc-list { padding: 0.75rem 0; }
+  .toc-item {
+    display: flex; align-items: center;
+    padding: 0.7rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    text-decoration: none;
+    transition: all 0.25s; cursor: pointer;
+    gap: 1rem;
+    position: relative; overflow: hidden;
+  }
+  .toc-item::after {
+    content: ''; position: absolute; inset: 0; right: auto; width: 0%;
+    background: linear-gradient(90deg, rgba(201,168,76,0.04), transparent); transition: width 0.4s ease;
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover::after { width: 100%; }
+  .toc-item:hover { background: rgba(201,168,76,0.02); }
+  .toc-item:hover .toc-item-num { background: linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--emerald-deep); border-color:var(--gold); }
+  .toc-item:hover .toc-item-title { color: var(--gold-light); }
+  .toc-item-num {
+    width: 32px; height: 32px; min-width: 32px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 0.82rem; font-weight: 700;
+    color: var(--gold);
+    transition: all 0.25s;
+    position: relative; z-index: 2;
+  }
+  .toc-item-content { flex: 1; position: relative; z-index: 2; }
+  .toc-item-title {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--text-main);
+    transition: color 0.25s;
+  }
+  .toc-item-desc { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-top: 0.15rem; }
+  .toc-item-arrow {
+    color: rgba(201,168,76,0.35); font-size: 1rem;
+    transition: transform 0.25s; position: relative; z-index: 2;
+  }
+  .toc-item:hover .toc-item-arrow { transform: translateX(-4px); color: var(--gold); }
+
+  /* ── FLOW STEPS (Journey) ── */
+  #journey { background:#0d3320; position:relative; overflow:hidden; border-top: 1px solid rgba(201,168,76,0.1); }
+  #journey::before {
+    content:''; position:absolute; inset:0;
+    background-image:radial-gradient(rgba(201,168,76,0.045) 1.5px,transparent 1.5px);
+    background-size:38px 38px;
+  }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+  @media(max-width:820px){.two-col{grid-template-columns:1fr;}}
+  .flow-steps { display:flex; flex-direction:column; gap:0; position:relative; }
+  .flow-step {
+    display:flex; gap:1.75rem; align-items:flex-start;
+    position:relative; padding-bottom:2.75rem; cursor:pointer;
+  }
+  .flow-step:last-child { padding-bottom:0; }
+  .flow-step-line {
+    position:absolute; right:25px; top:52px; bottom:0;
+    width:2px; background:linear-gradient(to bottom,rgba(201,168,76,0.35),rgba(201,168,76,0.04));
+  }
+  .flow-step:last-child .flow-step-line { display:none; }
+  .flow-step-num {
+    width:52px; height:52px; min-width:52px; border-radius:50%;
+    background:linear-gradient(135deg,var(--emerald),var(--emerald-light));
+    border:2px solid rgba(201,168,76,0.35);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Readex Pro',sans-serif; font-size:1.15rem; font-weight:700;
+    color:var(--gold-light); position:relative; z-index:1;
+    transition:all 0.3s; flex-shrink:0;
+  }
+  .flow-step:hover .flow-step-num,.flow-step.active .flow-step-num {
+    background:linear-gradient(135deg,var(--gold),var(--gold-light));
+    color:var(--emerald-deep); border-color:var(--gold-bright);
+    box-shadow:0 0 22px rgba(201,168,76,0.5); transform:scale(1.1);
+  }
+  .flow-step-content {
+    flex:1; background:rgba(255,255,255,0.028);
+    border:1px solid rgba(255,255,255,0.065); border-radius:14px;
+    padding:1.6rem; transition:all 0.3s; position: relative;
+  }
+  .flow-step-content::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    background: radial-gradient(circle at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .flow-step:hover .flow-step-content::after, .flow-step.active .flow-step-content::after { opacity: 1; }
+  .flow-step:hover .flow-step-content,.flow-step.active .flow-step-content {
+    border-color:rgba(201,168,76,0.32); background:rgba(201,168,76,0.048);
+  }
+  .flow-step-title {
+    font-family:'Readex Pro',sans-serif; font-size:1.1rem; font-weight:700;
+    color:var(--gold-light); margin-bottom:0.6rem;
+  }
+  .flow-step-desc { font-size:0.95rem; color: var(--text-main); font-weight: 500; line-height:1.8; }
+  .sys-diagram {
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(201,168,76,0.14); border-radius:18px;
+    padding:1.85rem; position:sticky; top:100px;
+  }
+  .sys-title {
+    font-family:'Readex Pro',sans-serif; font-size:1.1rem; font-weight:700;
+    color:var(--gold-light); text-align:center; margin-bottom:1.4rem;
+    padding-bottom:0.9rem; border-bottom:1px solid rgba(201,168,76,0.13);
+  }
+  .sys-node {
+    display:flex; align-items:center; gap:0.7rem;
+    padding:0.8rem 0.95rem; border-radius:10px; margin-bottom:0.45rem;
+    background:rgba(255,255,255,0.028); border:1px solid rgba(255,255,255,0.065);
+    transition:all 0.3s; cursor:pointer;
+  }
+  .sys-node:hover,.sys-node.lit { background:rgba(201,168,76,0.09); border-color:rgba(201,168,76,0.28); }
+  .sys-node-icon {
+    width:34px; height:34px; background:linear-gradient(135deg,var(--emerald-light),var(--emerald));
+    border-radius:8px; display:flex; align-items:center; justify-content:center;
+    font-size:0.95rem; flex-shrink:0;
+  }
+  .sys-node.lit .sys-node-icon { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color: var(--emerald-deep); }
+  .sys-node-name { font-size:0.95rem; font-weight:700; color:var(--white); }
+  .sys-node-sub { font-size:0.8rem; color: var(--text-muted); font-weight: 500; }
+  .sys-connector {
+    display:flex; align-items:center; justify-content:center; height:22px; gap:0.3rem;
+    color:rgba(201,168,76,0.6); font-size:0.75rem; font-weight: 600;
+  }
+  .sys-connector-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(201,168,76,0.4),transparent); }
+
+  /* ── TECH STACK CARDS ── */
+  #features { background:var(--emerald-deep); }
+  .tech-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.25rem; margin-top:3.5rem;
+  }
+  .tech-card {
+    background:linear-gradient(145deg,rgba(26,92,58,0.22),rgba(7,30,17,0.6));
+    border:1px solid rgba(201,168,76,0.12); border-radius:18px;
+    padding:1.85rem 1.5rem; text-align:center;
+    transition:all 0.4s; position:relative; overflow:hidden; cursor:pointer;
+  }
+  .tech-card::before {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    transform:scaleX(0); transition:transform 0.4s;
+  }
+  .tech-card:hover::before { transform:scaleX(1); }
+  .tech-card:hover { border-color:rgba(201,168,76,0.38); transform:translateY(-6px); box-shadow:0 20px 45px rgba(0,0,0,0.35); }
+  .tech-icon-wrap {
+    width:64px; height:64px; margin:0 auto 1.1rem; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    font-size:1.9rem; position:relative;
+  }
+  .tech-badge {
+    position:absolute; top:-6px; right:-6px; background:linear-gradient(135deg,var(--gold),var(--gold-light));
+    color:var(--emerald-deep); font-size:0.6rem; font-weight:700; padding:0.2rem 0.5rem; border-radius:50px; letter-spacing:0.04em;
+  }
+  .tech-name { font-family:'Readex Pro',sans-serif; font-size:1.05rem; font-weight:700; color:var(--gold-light); margin-bottom:0.5rem; }
+  .tech-desc { font-size:0.9rem; color: var(--text-main); font-weight: 500; line-height:1.7; }
+  .tech-card .tech-glow {
+    position: absolute; inset: -1px; border-radius: inherit;
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent 60%);
+    opacity: 0; transition: opacity 0.4s; pointer-events: none; z-index: 0;
+  }
+  .tech-card:hover .tech-glow { opacity: 1; }
+  .tech-card > * { position: relative; z-index: 1; }
+
+  /* ── ORG STRUCTURE ── */
+  #structure { background: linear-gradient(180deg, #0d3320 0%, var(--emerald-deep) 100%); }
+  .org-tree { display: flex; flex-direction: column; align-items: center; margin-top: 3.5rem; gap: 1.5rem; }
+  .org-level { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; width: 100%; }
+  .org-box {
+    background: rgba(255,255,255,0.025); border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px; padding: 1.25rem 2rem; text-align: center; min-width: 200px;
+    position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s;
+  }
+  .org-box:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); transform: translateY(-3px); }
+  .org-title { font-family: 'Readex Pro', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--gold-light); }
+  .org-connector { width: 2px; height: 30px; background: linear-gradient(to bottom, rgba(201,168,76,0.5), rgba(201,168,76,0.1)); margin: 0 auto; }
+
+  /* ── PERMISSIONS ── */
+  #permissions { background:var(--emerald-deep); }
+  .vip-list {
+    display: flex; flex-direction: column; gap: 1.1rem; position: relative; padding-right: 1.4rem;
+    margin-top: 3.5rem; max-width: 900px; margin-left: auto; margin-right: auto;
+  }
+  .vip-list::before {
+    content: ''; position: absolute; right: 17px; top: 22px; bottom: 22px; width: 2px;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.55), rgba(201,168,76,0.06));
+  }
+  .vip-item {
+    display: flex; gap: 1rem; align-items: flex-start; background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(201,168,76,0.14); border-right: 3px solid rgba(201,168,76,0.55);
+    border-radius: 12px; padding: 1.5rem 1.8rem; position: relative; transition: all 0.3s;
+  }
+  .vip-item:hover { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.35); transform: translateX(-4px); }
+  .vip-item-icon {
+    width: 48px; height: 48px; min-width: 48px; background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+    border: 1px solid rgba(201,168,76,0.4); border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-right: 1rem; color: var(--white); box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .vip-item-content h4 { font-family: 'Readex Pro', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--gold-light); margin-bottom: 0.4rem; }
+  .vip-item-content p { font-size: 0.95rem; color: var(--text-main); font-weight: 500; line-height: 1.75; }
+
+  /* ── FINAL CONCLUSION ── */
+  #final-word {
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 100%, rgba(26,92,58,0.45) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      #071e11;
+    position: relative;
+    padding-bottom: 2rem; 
+  }
+  .final-word-card {
+    max-width: 860px; margin: 0 auto; text-align: center;
+    background: linear-gradient(165deg, rgba(255,255,255,0.03), rgba(7,30,17,0.4));
+    border: 1px solid rgba(201,168,76,0.22); border-radius: 22px; padding: 3.5rem 3rem;
+    position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+  }
+  .final-word-card::before {
+    content: ''; position: absolute; top: 0; right: 15%; left: 15%; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 3px;
+  }
+  .final-word-seal {
+    width: 72px; height: 72px; margin: -5.5rem auto 1.5rem;
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-light)); border: 2px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 0 35px rgba(201,168,76,0.35), 0 10px 25px rgba(0,0,0,0.4);
+  }
+  .final-word-title { font-family: 'Readex Pro', sans-serif; font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; color: var(--white); line-height: 1.6; margin-bottom: 1.5rem; }
+  .final-word-title span { color: var(--gold-light); }
+
+  /* ── EXECUTION & FOOTER ── */
+  footer {
+    background: #ffffff;
+    border-top: 3px solid var(--gold);
+    padding: 3rem 2rem 1.5rem;
+    text-align: center;
+    direction: rtl;
+    color: #000;
+    position: relative;
+  }
+  
+  .execution-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 860px;
+    margin: -5.5rem auto 2.5rem; 
+    padding: 1.8rem 2.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-right: 6px solid var(--gold);
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    text-align: right;
+  }
+  .execution-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at top left, rgba(201,168,76,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .execution-info { position: relative; z-index: 1; }
+  .execution-label {
+    font-size: 0.95rem; font-weight: 700; color: var(--gold);
+    margin-bottom: 0.5rem; letter-spacing: 0.03em;
+  }
+  .execution-name {
+    font-family: 'Readex Pro', sans-serif; font-size: 1.4rem; font-weight: 700;
+    color: var(--emerald-dark); line-height: 1.4;
+  }
+  .execution-logo {
+    display: flex; align-items: center; justify-content: center;
+    width: 65px; height: 65px; min-width: 65px;
+    background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 14px; font-size: 2rem; color: var(--gold);
+    box-shadow: inset 0 0 15px rgba(201,168,76,0.05);
+  }
+
+  .author-card {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 860px; margin: 0 auto 1.5rem; padding: 1.25rem 1.75rem;
+    background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px;
+  }
+  .author-right { text-align: right; }
+  .author-name { font-family: 'Readex Pro', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--emerald-dark); margin-bottom: 0.2rem; }
+  .author-role { font-size: 0.9rem; font-weight: 600; color: rgba(0,0,0,0.5); }
+  .author-tu { display: flex; align-items: center; gap: 0.6rem; border: 2px solid var(--gold); border-radius: 8px; padding: 0.5rem 0.9rem; }
+  .tu-text-big { font-family: 'Readex Pro', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; }
+  .tu-text-sm { font-size: 0.65rem; line-height: 1.5; color: var(--emerald-dark); text-align: right; font-weight: 700; }
+  .footer-sub { font-size:0.85rem; font-weight: 600; color:rgba(0,0,0,0.5); }
+
+  /* ══════════════════════════════════════════
+     REVEAL & ENTRANCE ANIMATIONS
+  ══════════════════════════════════════════ */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-stagger > * { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+  .reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0.05s; }
+  .reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.13s; }
+  .reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.21s; }
+  .reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.29s; }
+  .reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay: 0.37s; }
+
+  /* ══════════════════════════════════════════
+     SECTION TRANSITION
+  ══════════════════════════════════════════ */
+  #scroll-flash { position: fixed; top: 62px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent 0%, var(--gold-bright) 40%, var(--gold) 60%, transparent 100%); z-index: 9998; opacity: 0; pointer-events: none; transform-origin: left; }
+  #scroll-flash.flash-active { animation: flashSweep 0.6s cubic-bezier(0.22,1,0.36,1) forwards; }
+  @keyframes flashSweep { 0% { opacity: 0; clip-path: inset(0 100% 0 0); } 20% { opacity: 1; } 70% { opacity: 1; clip-path: inset(0 0% 0 0); } 100% { opacity: 0; clip-path: inset(0 0% 0 0); } }
+
+  #nav-transition-veil { position: fixed; inset: 0; z-index: 9990; pointer-events: none; opacity: 0; transition: opacity 0s; overflow: hidden; }
+  #nav-transition-veil .fog-layer { position: absolute; inset: 0; background: radial-gradient(ellipse 120% 80% at 20% 30%, rgba(7,30,17,0.82) 0%, transparent 60%), radial-gradient(ellipse 100% 90% at 80% 70%, rgba(15,61,38,0.75) 0%, transparent 55%), radial-gradient(ellipse 80% 70% at 50% 50%, rgba(7,30,17,0.65) 0%, transparent 70%), rgba(7,30,17,0.6); backdrop-filter: blur(18px) saturate(0.7); -webkit-backdrop-filter: blur(18px) saturate(0.7); }
+  #nav-transition-veil .fog-drift-1, #nav-transition-veil .fog-drift-2 { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; }
+  #nav-transition-veil .fog-drift-1 { background: radial-gradient(ellipse 40% 30% at 30% 40%, rgba(61,160,106,0.12) 0%, transparent 60%), radial-gradient(ellipse 35% 25% at 70% 60%, rgba(201,168,76,0.07) 0%, transparent 55%); animation: fogDrift1 1.4s ease-in-out forwards; }
+  #nav-transition-veil .fog-drift-2 { background: radial-gradient(ellipse 50% 40% at 60% 30%, rgba(26,92,58,0.15) 0%, transparent 65%), radial-gradient(ellipse 30% 35% at 25% 70%, rgba(201,168,76,0.06) 0%, transparent 50%); animation: fogDrift2 1.4s ease-in-out forwards; }
+  #nav-transition-veil .fog-particles { position: absolute; inset: 0; }
+  #nav-transition-veil .fog-particle { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(245,217,122,0.6) 0%, transparent 70%); animation: particleFloat var(--dur, 1.2s) var(--delay, 0s) ease-out forwards; opacity: 0; }
+  #nav-transition-veil .fog-line { position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 30%, rgba(245,217,122,0.8) 50%, rgba(201,168,76,0.5) 70%, transparent 100%); transform: scaleX(0); transform-origin: center; }
+
+  #nav-transition-veil.veil-enter { opacity: 1; pointer-events: all; transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+  #nav-transition-veil.veil-enter .fog-line { animation: lineExpand 0.4s 0.1s cubic-bezier(0.22,1,0.36,1) forwards; }
+  #nav-transition-veil.veil-exit { opacity: 0; pointer-events: none; transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1) 0.05s; }
+
+  @keyframes fogDrift1 { 0% { transform: translate(0, 0) scale(1); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(-4%, 3%) scale(1.08); opacity: 0.6; } }
+  @keyframes fogDrift2 { 0% { transform: translate(0, 0) scale(1); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(3%, -4%) scale(1.06); opacity: 0.5; } }
+  @keyframes particleFloat { 0% { opacity: 0; transform: translateY(0) scale(0.3); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(var(--travel, -60px)) scale(1.2); } }
+  @keyframes lineExpand { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+
+  /* ══════════════════════════════════════════
+     UI ELEMENTS
+  ══════════════════════════════════════════ */
+  #section-indicator {
+    position: fixed; left: 1.1rem; top: 50%; transform: translateY(-50%); z-index: 200;
+    display: flex; flex-direction: column; gap: 0.5rem; opacity: 0; transition: opacity 0.5s ease;
+  }
+  #section-indicator.si-visible { opacity: 1; }
+  .sec-dot {
+    width: 5px; height: 5px; border-radius: 50%; background: rgba(201,168,76,0.22); border: 1px solid rgba(201,168,76,0.45);
+    transition: all 0.35s cubic-bezier(0.22,1,0.36,1); cursor: pointer; position: relative;
+  }
+  .sec-dot::after {
+    content: attr(data-label); position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    white-space: nowrap; font-size: 0.7rem; font-weight: 700; color: var(--gold-light);
+    background: rgba(7,30,17,0.9); border: 1px solid rgba(201,168,76,0.3); padding: 0.2rem 0.55rem;
+    border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+  }
+  .sec-dot:hover::after { opacity: 1; }
+  .sec-dot.dot-active { background: var(--gold); height: 18px; border-radius: 3px; box-shadow: 0 0 10px rgba(201,168,76,0.55); border-color: var(--gold-bright); }
+  @media(max-width: 900px) { #section-indicator { display: none; } }
+
+  #reading-progress { position: fixed; top: 0; right: 0; left: 0; height: 3px; z-index: 9999; pointer-events: none; background: transparent; }
+  #reading-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--emerald-glow), var(--gold), var(--gold-bright)); box-shadow: 0 0 10px rgba(245,217,122,0.6); transition: width 0.1s linear; }
+
+  #back-to-top {
+    position: fixed; bottom: 2rem; left: 2rem; width: 46px; height: 46px;
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-light)); border: 1px solid rgba(201,168,76,0.4); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 500;
+    opacity: 0; transform: translateY(20px) scale(0.8); transition: all 0.4s cubic-bezier(0.22,1,0.36,1); box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  #back-to-top.visible { opacity: 1; transform: translateY(0) scale(1); }
+  #back-to-top:hover { background: linear-gradient(135deg, var(--gold), var(--gold-light)); transform: translateY(-3px) scale(1.08); }
+  #back-to-top svg { color: var(--gold-light); transition: color 0.3s; }
+  #back-to-top:hover svg { color: var(--emerald-deep); }
+
+  #export-btn {
+    position: fixed; bottom: 2rem; right: 2rem; display: flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, rgba(7,30,17,0.95), rgba(13,51,32,0.95)); border: 1px solid rgba(201,168,76,0.35);
+    color: var(--gold-light); font-size: 0.8rem; font-weight: 700; padding: 0.6rem 1.1rem; border-radius: 50px;
+    cursor: pointer; z-index: 500; backdrop-filter: blur(10px); opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+    font-family: 'IBM Plex Sans Arabic', sans-serif; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  #export-btn.visible { opacity: 1; transform: translateY(0); }
+  #export-btn:hover { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--emerald-deep); transform: translateY(-2px); }
+
+  #toast-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.75rem; pointer-events: none; }
+  .toast {
+    display: flex; align-items: center; gap: 0.7rem; background: rgba(13,51,32,0.95);
+    border: 1px solid rgba(201,168,76,0.35); border-right: 3px solid var(--gold); border-radius: 12px;
+    padding: 0.85rem 1.25rem; min-width: 220px; max-width: 320px; box-shadow: 0 8px 24px rgba(0,0,0,0.35); backdrop-filter: blur(12px);
+    opacity: 0; transform: translateX(30px); animation: toastIn 0.4s cubic-bezier(0.22,1,0.36,1) forwards; pointer-events: all;
+  }
+  .toast.toast-out { animation: toastOut 0.3s ease forwards; }
+  .toast-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .toast-text { font-size: 0.88rem; font-weight: 600; color: var(--white); line-height: 1.4; }
+  @keyframes toastIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(30px); } }
+
+  .cursor-dot { position: fixed; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); transition: transform 0.1s ease; mix-blend-mode: screen; }
+  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1.5px solid rgba(201,168,76,0.5); border-radius: 50%; pointer-events: none; z-index: 99998; transform: translate(-50%, -50%); transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease; }
+  .cursor-ring.cursor-hover { width: 48px; height: 48px; border-color: rgba(201,168,76,0.8); }
+  @media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+
+  #progress-tracker { position: fixed; top: 50%; left: 0; transform: translateY(-50%); z-index: 150; pointer-events: none; width: 4px; height: 0%; max-height: calc(100vh - 100px); background: linear-gradient(to bottom, var(--gold), var(--emerald-glow)); border-radius: 0 4px 4px 0; opacity: 0; transition: height 0.3s ease, opacity 0.5s ease; box-shadow: 2px 0 12px rgba(201,168,76,0.3); }
+  #progress-tracker.pt-visible { opacity: 1; }
+
+  #section-counter { position: fixed; bottom: 2rem; right: 50%; transform: translateX(50%); z-index: 150; font-family: 'Readex Pro', sans-serif; font-size: 0.7rem; font-weight: 700; color: rgba(201,168,76,0.45); letter-spacing: 0.08em; opacity: 0; transition: opacity 0.4s; pointer-events: none; white-space: nowrap; }
+  #section-counter.sc-visible { opacity: 1; }
+
+  #current-section-banner { position: fixed; top: 62px; right: 0; left: 0; height: 2px; z-index: 98; pointer-events: none; background: linear-gradient(90deg, var(--emerald-glow) 0%, var(--gold) 50%, var(--emerald-glow) 100%); opacity: 0; transform: scaleX(0); transform-origin: right; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.3s; }
+  #current-section-banner.csb-active { opacity: 0.7; transform: scaleX(1); }
+
+  #ambient-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.45; }
+
+  /* ═══ MOBILE RESPONSIVE ═══ */
+  @media(max-width: 768px) {
+    nav { padding:0 1rem; }
+    .menu-toggle { display: block; padding: 0.5rem 0.75rem; min-height: 44px; }
+    .nav-links { 
+      position: fixed; top: 62px; right: 0; left: 0; width: 100%;
+      background: rgba(7,30,17,0.98); flex-direction: column; 
+      padding: 0.5rem 0; display: none; border-bottom: 1px solid rgba(201,168,76,0.18);
+      max-height: calc(100vh - 62px); overflow-y: auto;
+      backdrop-filter: blur(20px); box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    }
+    .nav-links.active { display: flex; }
+    .nav-links a { display: block; text-align: center; padding: 0.85rem 1rem; border-radius: 0; font-size: 0.95rem; }
+    .hero { padding-top: 80px; }
+    .hero-title { font-size: clamp(1.55rem, 7vw, 2.2rem); }
+    .hero-info-box { max-width: 100%; }
+    section { padding: 3.5rem 1.1rem; }
+    .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    .flow-step-line { right: 18px; top: 46px; }
+    .flow-step-num { width: 38px; height: 38px; min-width: 38px; font-size: 0.95rem; }
+    .sys-diagram { position: relative; top: 0; margin-top: 2rem; }
+    #back-to-top { bottom: 1.2rem; left: 1.2rem; width: 40px; height: 40px; }
+    #export-btn { display: none; }
+    #toast-container { bottom: 1rem; right: 1rem; left: 1rem; }
+    .toast { min-width: unset; max-width: 100%; }
+    .cursor-dot, .cursor-ring { display: none !important; }
+    .vip-list { padding-right: 0; }
+    .vip-list::before { display: none; }
+    .execution-card { flex-direction: column; text-align: center; gap: 1rem; margin-top: -4.5rem; padding: 1.5rem; border-right: 1px solid rgba(201,168,76,0.4); border-top: 6px solid var(--gold); }
+    .execution-info { text-align: center; }
+  }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    body { background: #fff !important; color: #000 !important; }
+    .hero-bg, .hero-grid, .orb, nav, .menu-toggle, #ambient-canvas, #reading-progress, #progress-tracker, #section-counter, #current-section-banner, #back-to-top, #export-btn, #section-indicator { display: none !important; }
+    * { color: #000 !important; text-shadow: none !important; box-shadow: none !important; }
+    .hero { min-height: auto; padding-top: 2rem; }
+    .hero-title .line-white, .hero-title .line-gold, .section-title span, .gold-text { color: #1a5c3a !important; }
+    .section-desc, .tech-desc, .flow-step-desc, .vip-item-content p, .toc-item-title, .toc-item-desc { color: #333 !important; }
+    .tech-card, .flow-step-content, .org-box, .vip-item, .final-word-card, .conclusion-quote, .toc-wrapper, .execution-card { background: #f9f9f9 !important; border: 1px solid #ccc !important; page-break-inside: avoid; }
+    .flow-step-num, .tech-icon-wrap, .sys-node-icon, .vip-item-icon, .final-word-seal, .toc-header-icon, .toc-item-num, .execution-logo { background: #eee !important; color: #1a5c3a !important; border: 1px solid #ccc !important; }
+    a { text-decoration: none !important; color: #000 !important; }
+    .hero-badge, .section-label { border: 1px solid #1a5c3a !important; color: #1a5c3a !important; }
+    .toc-item-arrow { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- AMBIENT CANVAS -->
+<canvas id="ambient-canvas"></canvas>
+
+<!-- PROGRESS INDICATORS & UTILS -->
+<div id="reading-progress"><div id="reading-progress-bar"></div></div>
+<div id="progress-tracker"></div>
+<div id="section-counter"></div>
+<div id="current-section-banner"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div id="toast-container"></div>
+
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="العودة للأعلى" aria-label="العودة للأعلى">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<button id="export-btn" onclick="window.print()" title="طباعة / تصدير">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  طباعة الدليل
+</button>
+
+<!-- TRANSITION ELEMENTS -->
+<div id="nav-transition-veil">
+  <div class="fog-layer"></div>
+  <div class="fog-drift-1"></div>
+  <div class="fog-drift-2"></div>
+  <div class="fog-particles" id="fog-particles-container"></div>
+  <div class="fog-line"></div>
+</div>
+<div id="scroll-flash"></div>
+
+<!-- SECTION INDICATOR -->
+<div id="section-indicator">
+  <div class="sec-dot" data-target="home"        data-label="الرئيسية"></div>
+  <div class="sec-dot" data-target="intro"       data-label="التحول الرقمي"></div>
+  <div class="sec-dot" data-target="toc"         data-label="الفهرس"></div>
+  <div class="sec-dot" data-target="features"    data-label="المزايا التقنية"></div>
+  <div class="sec-dot" data-target="journey"     data-label="رحلة المستفيد"></div>
+  <div class="sec-dot" data-target="structure"   data-label="الهيكل الإداري"></div>
+  <div class="sec-dot" data-target="permissions" data-label="صلاحيات النظام"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">📸</div>
+    <div>
+      <div style="font-weight:700;font-size:0.86rem">مركز الخدمات الأكاديمية</div>
+      <div style="font-size:0.68rem;color:rgba(255,255,255,0.38)">كلية إدارة الأعمال</div>
+    </div>
+  </div>
+  
+  <button class="menu-toggle" onclick="toggleMenu()" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" onclick="closeMenu()">الرئيسية</a></li>
+    <li><a href="#intro" onclick="closeMenu()">التحول الرقمي</a></li>
+    <li><a href="#toc" onclick="closeMenu()">الفهرس</a></li>
+    <li><a href="#features" onclick="closeMenu()">المزايا التقنية</a></li>
+    <li><a href="#journey" onclick="closeMenu()">رحلة المستفيد</a></li>
+    <li><a href="#structure" onclick="closeMenu()">الهيكل الإداري</a></li>
+    <li><a href="#permissions" onclick="closeMenu()">الصلاحيات</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      دليل المستخدم الرسمي
+    </div>
+    <h1 class="hero-title">
+      <span class="line-gold">منصة <span class="brand-highlight" data-text="«تَزامُن»">«تَزامُن»</span></span>
+      <span class="line-white">لخدمات التصوير الذكية</span>
+    </h1>
+    <p class="hero-subtitle">تَزامُن.. دقة الموعد واحترافية الصورة.<br>دليل إرشادي شامل يوضح خطوات الحجز، تأكيد الحضور ونظام التقييم الآلي لمنسوبي كلية إدارة الأعمال.</p>
+    <div class="hero-cta">
+      <div class="hero-info-box hero-info-box--gold">
+        <div class="hero-info-box-title">⚙️ نظام معتمد رسمياً</div>
+        <div class="hero-info-box-text">يعمل النظام بشكل كامل وموثوق عبر بنية Microsoft Bookings المؤسسية.</div>
+      </div>
+      <div class="hero-info-box hero-info-box--dark">
+        <div class="hero-info-box-title" style="color:var(--gold-light)">🏢 الجهة المشرفة</div>
+        <div class="hero-info-box-text">مركز الخدمات الأكاديمية والإدارية - كلية إدارة الأعمال، جامعة الطائف.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO (Digital Transformation) -->
+<section id="intro">
+  <div class="section-inner conclusion-inner">
+    <div class="reveal" style="text-align:center">
+      <span class="section-label">رؤية المركز</span>
+      <h2 class="section-title">التحول الرقمي في <span>خدمات كلية إدارة الأعمال</span></h2>
+      <p class="section-desc" style="margin:0 auto">استجابة لمتطلبات العصر الرقمي وتماشياً مع رؤية المملكة 2030 في تبني التقنيات الحديثة لرفع كفاءة الأداء المؤسسي.</p>
+    </div>
+
+    <div class="conclusion-quote reveal" style="margin-top:3rem">
+      <div class="conclusion-quote-mark">"</div>
+      <div class="conclusion-quote-text">
+        تهدف منصة «تَزامُن» إلى أتمتة وتسهيل عملية حجز جلسات التصوير لمنسوبي كلية إدارة الأعمال، مما يوفر الوقت والجهد ويضمن أعلى معايير الجودة التنظيمية والإدارية. كما تسهم هذه الأتمتة في تقليل الهدر الورقي، وتعزيز الاستدامة البيئية، وتوفير تجربة مستخدم سلسة ومتطورة تعكس ريادة الكلية في تقديم خدمات نوعية ومبتكرة. من خلال هذا النظام، نحقق تكاملاً تقنياً يربط بين احتياجات المستفيدين وسرعة الاستجابة مما يخلق بيئة عمل أكثر احترافية وإنتاجية.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS (TOC) -->
+<section id="toc">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <span class="section-label">محتويات الدليل</span>
+      <h2 class="section-title">فهرس <span>المحتويات</span></h2>
+      <p class="section-desc" style="margin:0 auto">دليلك السريع للتنقل بين أقسام هذا الدليل — اضغط على أي قسم للانتقال إليه مباشرة.</p>
+    </div>
+
+    <div class="toc-wrapper reveal">
+      <div class="toc-header">
+        <div class="toc-header-icon">📑</div>
+        <div>
+          <div class="toc-header-text">منصة «تَزامُن» لخدمات التصوير</div>
+          <div class="toc-header-sub">مركز الخدمات الأكاديمية والإدارية</div>
+        </div>
+      </div>
+      <div class="toc-list">
+        <a class="toc-item" href="#intro">
+          <div class="toc-item-num">١</div>
+          <div class="toc-item-content">
+            <div class="toc-item-title">التحول الرقمي</div>
+            <div class="toc-item-desc">رؤية المركز لرقمنة الخدمات وأتمتتها</div>
+          </div>
+          <div class="toc-item-arrow">‹</div>
+        </a>
+        <a class="toc-item" href="#features">
+          <div class="toc-item-num">٢</div>
+          <div class="toc-item-content">
+            <div class="toc-item-title">المزايا التقنية</div>
+            <div class="toc-item-desc">قدرات وإمكانيات منصة الحجز الحديثة</div>
+          </div>
+          <div class="toc-item-arrow">‹</div>
+        </a>
+        <a class="toc-item" href="#journey">
+          <div class="toc-item-num">٣</div>
+          <div class="toc-item-content">
+            <div class="toc-item-title">رحلة المستفيد الشاملة</div>
+            <div class="toc-item-desc">خطوات الحصول على الخدمة من الحجز وحتى التقييم</div>
+          </div>
+          <div class="toc-item-arrow">‹</div>
+        </a>
+        <a class="toc-item" href="#structure">
+          <div class="toc-item-num">٤</div>
+          <div class="toc-item-content">
+            <div class="toc-item-title">الهيكل الإداري</div>
+            <div class="toc-item-desc">التنظيم الإداري لمركز الخدمات الأكاديمية</div>
+          </div>
+          <div class="toc-item-arrow">‹</div>
+        </a>
+        <a class="toc-item" href="#permissions">
+          <div class="toc-item-num">٥</div>
+          <div class="toc-item-content">
+            <div class="toc-item-title">لوحة التحكم وصلاحيات النظام</div>
+            <div class="toc-item-desc">توزيع الصلاحيات وأدوار فريق العمل للمنصة</div>
+          </div>
+          <div class="toc-item-arrow">‹</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH FEATURES (Bookings & Power Automate) -->
+<section id="features">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">البنية التقنية المتطورة</span>
+      <h2 class="section-title">المزايا التقنية <span>لمنصة تَزامُن</span></h2>
+      <p class="section-desc">مزيج قوي بين أنظمة Microsoft Bookings و Power Automate لتقديم تجربة حجز وإدارة استثنائية.</p>
+    </div>
+    
+    <div class="tech-grid reveal-stagger">
+      <!-- Bookings Features -->
+      <div class="tech-card reveal">
+        <div class="tech-icon-wrap" style="background:linear-gradient(135deg,rgba(0,120,212,0.25),rgba(0,180,255,0.1))">📅<span class="tech-badge">Bookings</span></div>
+        <div class="tech-name">حجز ذاتي ومرن</div>
+        <div class="tech-desc">توفير منصة حجز تتيح للمستفيدين استعراض الأوقات المتاحة واختيار الموعد المناسب في أي وقت ومن أي مكان.</div>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon-wrap" style="background:linear-gradient(135deg,rgba(0,120,212,0.25),rgba(0,180,255,0.1))">🔄<span class="tech-badge">Bookings</span></div>
+        <div class="tech-name">تكامل سلس مع Outlook</div>
+        <div class="tech-desc">مزامنة تلقائية وفورية مع تقويمات فريق العمل لتحديث حالات التوفر ومنع تعارض المواعيد المزدوجة.</div>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon-wrap" style="background:linear-gradient(135deg,rgba(0,120,212,0.25),rgba(0,180,255,0.1))">🔔<span class="tech-badge">Bookings</span></div>
+        <div class="tech-name">تذكيرات وإشعارات آلية</div>
+        <div class="tech-desc">إرسال رسائل تأكيد وتذكيرات تلقائية عبر البريد الإلكتروني للحد من التغيب عن المواعيد وضمان الحضور.</div>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon-wrap" style="background:linear-gradient(135deg,rgba(0,120,212,0.25),rgba(0,180,255,0.1))">🎛️<span class="tech-badge">Bookings</span></div>
+        <div class="tech-name">إدارة مركزية للخدمات</div>
+        <div class="tech-desc">لوحة تحكم ذكية لتخصيص الخدمة بالكامل وإدارة بيانات المستفيدين وفريق العمل بكفاءة عالية واحترافية.</div>
+      </div>
+      
+      <!-- Power Automate Features -->
+      <div class="tech-card reveal">
+        <div class="tech-icon-wrap" style="background:linear-gradient(135deg,rgba(0,160,100,0.25),rgba(0,220,130,0.1))">🤖<span class="tech-badge">Automate</span></div>
+        <div class="tech-name">أتمتة المهام المتكررة</div>
+        <div class="tech-desc">تحويل العمليات الإدارية اليدوية والروتينية إلى تدفقات عمل تعمل تلقائياً لتوفير الوقت والجهد.</div>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon-wrap" style="background:linear-gradient(135deg,rgba(0,160,100,0.25),rgba(0,220,130,0.1))">🔗<span class="tech-badge">Automate</span></div>
+        <div class="tech-name">ربط متقدم للأنظمة</div>
+        <div class="tech-desc">القدرة العالية على ربط تطبيق Bookings مع التطبيقات الأخرى لتبادل البيانات وتحديث سجلات الحضور فورياً.</div>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon-wrap" style="background:linear-gradient(135deg,rgba(0,160,100,0.25),rgba(0,220,130,0.1))">⚡<span class="tech-badge">Automate</span></div>
+        <div class="tech-name">إجراءات فورية وذكية</div>
+        <div class="tech-desc">بناء مشغلات ذكية تقوم بإرسال نماذج تقييم الرضا ورسائل الشكر تلقائياً فور انتهاء جلسة التصوير.</div>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon-wrap" style="background:linear-gradient(135deg,rgba(0,160,100,0.25),rgba(0,220,130,0.1))">🛡️<span class="tech-badge">Automate</span></div>
+        <div class="tech-name">كفاءة تشغيلية وأمان</div>
+        <div class="tech-desc">إنجاز المهام بدقة عالية وتقليل الأخطاء البشرية ضمن بيئة سحابية آمنة وموثوقة تتوافق مع معايير الأمان.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY MAP -->
+<section id="journey">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">رحلة المستفيد الشاملة</span>
+      <h2 class="section-title">خطوات <span>الحصول على الخدمة</span></h2>
+      <p class="section-desc">منظومة متكاملة تبدأ من الحجز وتنتهي بقياس مستوى الرضا لضمان التطوير المستمر.</p>
+    </div>
+    <div class="two-col" style="margin-top:3.5rem">
+      <div class="flow-steps">
+        <div class="flow-step reveal" onclick="activateStep(this,0)">
+          <div class="flow-step-line"></div>
+          <div class="flow-step-num">١</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">الحجز الإلكتروني (الحجز المباشر)</div>
+            <div class="flow-step-desc">الدخول إلى الرابط المخصص للمنصة (Bookings)، اختيار التاريخ والوقت المناسب من الجدول المتاح، وتعبئة البيانات الأساسية (الاسم، البريد، الجوال). ستصلك رسالة إلكترونية تلقائية بتفاصيل الموعد لضمان عدم التعارض.</div>
+          </div>
+        </div>
+        <div class="flow-step reveal" onclick="activateStep(this,1)">
+          <div class="flow-step-line"></div>
+          <div class="flow-step-num">٢</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">تنفيذ الخدمة (يوم التصوير)</div>
+            <div class="flow-step-desc">الحضور إلى مقر مركز الخدمات في الوقت المحدد بدقة للحصول على خدمة التصوير بأعلى معايير الجودة والاحترافية.</div>
+          </div>
+        </div>
+        <div class="flow-step reveal" onclick="activateStep(this,2)">
+          <div class="flow-step-line"></div>
+          <div class="flow-step-num">٣</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">تأكيد الحضور</div>
+            <div class="flow-step-desc">سيقوم الموظف بتأكيد حضورك فوراً في السجل الذكي. بمجرد تغيير الحالة إلى "تم الحضور"، يبدأ النظام بعمله التلقائي لتوثيق الخدمة وحفظ البيانات.</div>
+          </div>
+        </div>
+        <div class="flow-step reveal" onclick="activateStep(this,3)">
+          <div class="flow-step-num">٤</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">نظام التقييم الآلي</div>
+            <div class="flow-step-desc">تفعيل المشغلات التلقائية لإرسال بريد تفاعلي يحتوي على رسالة شكر ورابط لقياس مستوى الرضا فور انتهاء الجلسة. النظام يُحدّث السجل لضمان دقة الإرسال وعدم التكرار للمساهمة في تطوير الخدمات.</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="reveal">
+        <div class="sys-diagram">
+          <div class="sys-title">🗺️ الخريطة التفاعلية</div>
+          <div class="sys-node" id="node-0"><div class="sys-node-icon">💻</div><div><div class="sys-node-name">منصة Bookings</div><div class="sys-node-sub">استقبال الطلبات وجدولتها</div></div></div>
+          <div class="sys-connector"><div class="sys-connector-line"></div><span>↕ تأكيد بالبريد</span><div class="sys-connector-line"></div></div>
+          <div class="sys-node" id="node-1"><div class="sys-node-icon">📸</div><div><div class="sys-node-name">مقر المركز</div><div class="sys-node-sub">تقديم خدمة التصوير</div></div></div>
+          <div class="sys-connector"><div class="sys-connector-line"></div><span>↕ توثيق إلكتروني</span><div class="sys-connector-line"></div></div>
+          <div class="sys-node" id="node-2"><div class="sys-node-icon">✅</div><div><div class="sys-node-name">تحديث النظام</div><div class="sys-node-sub">تسجيل حالة "تم الحضور"</div></div></div>
+          <div class="sys-connector"><div class="sys-connector-line"></div><span>↕ إجراءات Power Automate</span><div class="sys-connector-line"></div></div>
+          <div class="sys-node" id="node-3" style="border-color:rgba(201,168,76,0.28);background:rgba(201,168,76,0.07)"><div class="sys-node-icon" style="background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--emerald-deep)">⭐</div><div><div class="sys-node-name">إرسال التقييم</div><div class="sys-node-sub">رابط قياس مستوى الرضا</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORG STRUCTURE -->
+<section id="structure">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <span class="section-label">التنظيم الإداري</span>
+      <h2 class="section-title">الهيكل الإداري <span>لمركز الخدمات</span></h2>
+      <p class="section-desc" style="margin:0 auto">فريق عمل متكامل يعمل على تقديم الخدمات الأكاديمية والإدارية بكفاءة عالية.</p>
+    </div>
+
+    <div class="org-tree reveal-stagger">
+      <!-- المستوى الأول -->
+      <div class="org-level reveal">
+        <div class="org-box" style="border-color: var(--gold); background: linear-gradient(135deg, rgba(201,168,76,0.1), transparent);">
+          <div class="org-title">المشرف العام</div>
+        </div>
+      </div>
+      <div class="org-connector reveal"></div>
+      
+      <!-- المستوى الثاني -->
+      <div class="org-level reveal">
+        <div class="org-box">
+          <div class="org-title">نائب المشرف العام</div>
+        </div>
+      </div>
+      <div class="org-connector reveal"></div>
+      
+      <!-- المستوى الثالث -->
+      <div class="org-level reveal">
+        <div class="org-box">
+          <div class="org-title">مدير المركز</div>
+        </div>
+      </div>
+      <div class="org-connector reveal"></div>
+      
+      <!-- المستوى الرابع والأخير (فريق العمل) -->
+      <div class="org-level reveal">
+        <div class="org-box">
+          <div class="org-title">مسؤول الدعم التقني<br><span style="font-size:0.8rem;color:var(--text-muted);font-weight:500;">والاستبانات والأجهزة الإلكترونية</span></div>
+        </div>
+        <div class="org-box">
+          <div class="org-title">مسؤول معامل الحاسب الآلي</div>
+        </div>
+        <div class="org-box">
+          <div class="org-title">مسؤول الخدمات الإدارية</div>
+        </div>
+        <div class="org-box">
+          <div class="org-title">مسؤولة الخدمات الإدارية</div>
+        </div>
+        <div class="org-box">
+          <div class="org-title">مسؤولة الاحتياجات الخاصة</div>
+        </div>
+        <div class="org-box">
+          <div class="org-title">مسؤولة شؤون الخريجين</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM PERMISSIONS -->
+<section id="permissions">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <span class="section-label">الحوكمة والأمان</span>
+      <h2 class="section-title">لوحة التحكم <span>وصلاحيات النظام</span></h2>
+      <p class="section-desc" style="margin:0 auto">توزيع دقيق للصلاحيات يضمن أمان البيانات ومرونة وسهولة إدارة المواعيد لفريق العمل.</p>
+    </div>
+
+    <div class="vip-list reveal-stagger">
+      <div class="vip-item reveal">
+        <div class="vip-item-icon">👑</div>
+        <div class="vip-item-content">
+          <h4>مدير النظام</h4>
+          <p>يمتلك كامل الصلاحيات لإدارة المنصة، تشمل إضافة وإزالة الموظفين، وإنشاء وإدارة كافة الحجوزات وإعدادات النظام الأساسية.</p>
+        </div>
+      </div>
+      <div class="vip-item reveal">
+        <div class="vip-item-icon">📅</div>
+        <div class="vip-item-content">
+          <h4>المجدول</h4>
+          <p>مختص بإدارة الحجوزات في التقويم. لديه وصول للقراءة فقط للإعدادات والخدمات، مما يسمح له بتنظيم المواعيد دون تغيير البنية التحتية للمنصة.</p>
+        </div>
+      </div>
+      <div class="vip-item reveal">
+        <div class="vip-item-icon">👥</div>
+        <div class="vip-item-content">
+          <h4>فريق العمل</h4>
+          <p>إدارة التوفر الشخصي وإدارة الحجوزات المسندة إليهم في التقويم بمرونة عالية لضمان تقديم الخدمة في الأوقات المحددة.</p>
+        </div>
+      </div>
+      <div class="vip-item reveal">
+        <div class="vip-item-icon">👁️</div>
+        <div class="vip-item-content">
+          <h4>المشاهد</h4>
+          <p>رؤية الحجوزات في التقويم بشكل استعراضي (للقراءة فقط) دون التمكن من التعديل عليها، مفيد للمتابعة والاطلاع العام.</p>
+        </div>
+      </div>
+      <div class="vip-item reveal">
+        <div class="vip-item-icon">👤</div>
+        <div class="vip-item-content">
+          <h4>الضيف</h4>
+          <p>يمكن إسنادهم للحجوزات ليتمكنوا من تلقي المواعيد والإشعارات، ولكن لا يملكون أي صلاحية لفتح صندوق النظام أو استعراض لوحة التحكم.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CONCLUSION -->
+<section id="final-word">
+  <div class="section-inner">
+    <div class="final-word-card reveal">
+      <div class="final-word-seal">🤝</div>
+      <div class="section-label" style="margin-bottom:1rem;">رسالة المركز</div>
+      <h2 class="final-word-title">شكراً <span>لثقتكم</span></h2>
+      <p class="final-word-text" style="font-size: 1.15rem;">
+        نسعد دائماً بخدمتكم وتلبية تطلعاتكم للارتقاء ببيئة العمل، وتقديم خدمات أكاديمية وإدارية تواكب أحدث التقنيات عبر منصة «تَزامُن».
+      </p>
+      
+      <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid rgba(201,168,76,0.15);">
+        <p style="font-weight: 700; color: var(--gold-light); font-family: 'Readex Pro', sans-serif;">
+          مركز الخدمات الأكاديمية والإدارية<br>
+          <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">كلية إدارة الأعمال - جامعة الطائف</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER & EXECUTION BOX -->
+<footer>
+  <!-- مربع التوثيق (Execution Card) المضاف حديثاً -->
+  <div class="execution-card">
+    <div class="execution-info">
+      <div class="execution-label">فكرة وتنفيذ وتطوير</div>
+      <div class="execution-name">مستشار كلية إدارة الأعمال للشؤون الإدارية</div>
+    </div>
+    <div class="execution-logo">
+      💡
+    </div>
+  </div>
+
+  <!-- صندوق هوية الكلية (الفوتر الأصلي) -->
+  <div class="author-card">
+    <div class="author-right">
+      <div class="author-name">مركز الخدمات الأكاديمية والإدارية</div>
+      <div class="author-role">كلية إدارة الأعمال</div>
+    </div>
+    <div class="author-logo-wrap">
+      <div class="author-tu">
+        <div class="tu-text-big">TU</div>
+        <div class="tu-text-sm">جامعة الطائف<br>Taif University</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-sub" style="margin-top:1.25rem">منصة «تَزامُن» لخدمات التصوير — دليل المستخدم الرسمي</div>
+</footer>
+
+<script>
+/* ── MOBILE MENU ── */
+const navLinksEl = document.getElementById('navLinks');
+const menuBtn = document.querySelector('.menu-toggle');
+function toggleMenu() {
+  const open = navLinksEl.classList.toggle('active');
+  menuBtn.setAttribute('aria-expanded', open);
+  menuBtn.textContent = open ? '✕' : '☰';
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Tajawal',sans-serif;color:var(--ink);background:var(--cream);
-    background-image:radial-gradient(circle at 12% 8%,rgba(201,164,76,.07),transparent 40%),
-        radial-gradient(circle at 88% 92%,rgba(15,76,58,.06),transparent 45%);
-    -webkit-font-smoothing:antialiased;line-height:1.6}
-::selection{background:var(--gold);color:var(--emerald-900)}
-h1,h2,h3,h4{font-family:'El Messiri',sans-serif;font-weight:700;line-height:1.35}
+function closeMenu() {
+  navLinksEl.classList.remove('active');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  menuBtn.textContent = '☰';
+}
+document.addEventListener('click', e => {
+  if (navLinksEl.classList.contains('active') && !e.target.closest('nav')) closeMenu();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-.ornament{display:inline-flex;align-items:center;gap:.6rem;justify-content:center}
-.ornament .line{height:1px;width:48px;background:linear-gradient(90deg,transparent,var(--gold))}
-.ornament .line.rev{background:linear-gradient(90deg,var(--gold),transparent)}
-.ornament .dot{color:var(--gold);font-size:.7rem}
+/* ── REVEAL ANIMATIONS ── */
+const REVEAL_CLASSES = ['reveal', 'reveal-right', 'reveal-left', 'reveal-scale'];
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
 
-/* action bar */
+const staggerObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      staggerObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+
+REVEAL_CLASSES.forEach(cls =>
+  document.querySelectorAll('.' + cls).forEach(el => revObs.observe(el))
+);
+document.querySelectorAll('.reveal-stagger').forEach(el => staggerObs.observe(el));
+
+/* ── SECTION TRANSITION EFFECTS (Fog / ضباب) ── */
+const flashEl  = document.getElementById('scroll-flash');
+const veilEl   = document.getElementById('nav-transition-veil');
+const fogParticlesContainer = document.getElementById('fog-particles-container');
+
+function spawnFogParticles() {
+  if (!fogParticlesContainer) return;
+  fogParticlesContainer.innerHTML = '';
+  const count = 18;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'fog-particle';
+    const size = 4 + Math.random() * 14;
+    const x = 5 + Math.random() * 90;
+    const y = 10 + Math.random() * 80;
+    const travel = -(30 + Math.random() * 80);
+    const dur = 0.8 + Math.random() * 0.8;
+    const delay = Math.random() * 0.3;
+    p.style.cssText = `width:${size}px; height:${size}px; left:${x}%; top:${y}%; --dur:${dur}s; --delay:${delay}s; --travel:${travel}px; opacity:0;`;
+    fogParticlesContainer.appendChild(p);
+  }
+}
+
+function triggerNavTransition(targetId, callback) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    callback(); return;
+  }
+  if (flashEl) {
+    flashEl.classList.remove('flash-active');
+    void flashEl.offsetWidth;
+    flashEl.classList.add('flash-active');
+    flashEl.addEventListener('animationend', () => flashEl.classList.remove('flash-active'), { once: true });
+  }
+  if (veilEl) {
+    veilEl.classList.remove('veil-enter', 'veil-exit');
+    void veilEl.offsetWidth;
+    spawnFogParticles();
+    const drift1 = veilEl.querySelector('.fog-drift-1');
+    const drift2 = veilEl.querySelector('.fog-drift-2');
+    if (drift1) { drift1.style.animation = 'none'; void drift1.offsetWidth; drift1.style.animation = ''; }
+    if (drift2) { drift2.style.animation = 'none'; void drift2.offsetWidth; drift2.style.animation = ''; }
+    const fogLine = veilEl.querySelector('.fog-line');
+    if (fogLine) { fogLine.style.animation = 'none'; void fogLine.offsetWidth; fogLine.style.animation = ''; }
+    veilEl.classList.add('veil-enter');
+    setTimeout(() => {
+      callback();
+      setTimeout(() => {
+        veilEl.classList.remove('veil-enter');
+        veilEl.classList.add('veil-exit');
+        setTimeout(() => { veilEl.classList.remove('veil-exit'); }, 500);
+      }, 120);
+    }, 280);
+  } else {
+    callback();
+  }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href').slice(1);
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    e.preventDefault();
+    triggerNavTransition(targetId, () => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+});
+
+document.querySelectorAll('.sec-dot').forEach(dot => {
+  dot.addEventListener('click', () => {
+    const tid = dot.getAttribute('data-target');
+    const target = document.getElementById(tid);
+    if (!target) return;
+    triggerNavTransition(tid, () => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+});
+
+/* ── SECTION INDICATOR ── */
+const siEl   = document.getElementById('section-indicator');
+const siDots = document.querySelectorAll('.sec-dot');
+const allSecs = document.querySelectorAll('section[id]');
+
+function updateIndicator() {
+  let cur = '';
+  allSecs.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 160) cur = s.id;
+  });
+  siDots.forEach(d => {
+    d.classList.toggle('dot-active', d.getAttribute('data-target') === cur);
+  });
+  const heroH = document.getElementById('home')?.offsetHeight || 500;
+  if (siEl) siEl.classList.toggle('si-visible', window.scrollY > heroH * 0.6);
+}
+
+/* ── NAV HIGHLIGHT (SCROLL SPY) ── */
+const navAs = document.querySelectorAll('.nav-links a');
+let spyTick = false;
+function updateSpy() {
+  let cur = '';
+  allSecs.forEach(s => { if (window.scrollY >= s.offsetTop - 110) cur = s.id; });
+  navAs.forEach(a => {
+    a.classList.toggle('active-link', a.getAttribute('href') === '#' + cur);
+  });
+}
+window.addEventListener('scroll', () => {
+  if (!spyTick) {
+    spyTick = true;
+    requestAnimationFrame(() => { updateSpy(); updateIndicator(); spyTick = false; });
+  }
+}, { passive: true });
+updateSpy();
+updateIndicator();
+
+/* ── FLOW STEPS ── */
+const nodeMap = [0,1,2,3];
+function activateStep(el, idx) {
+  document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sys-node').forEach(n => n.classList.remove('lit'));
+  el.classList.add('active');
+  const node = document.getElementById('node-' + nodeMap[idx]);
+  if (node) node.classList.add('lit');
+}
+document.querySelectorAll('.flow-step').forEach((step, i) => {
+  step.setAttribute('tabindex', '0');
+  step.addEventListener('keypress', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); step.click(); }
+  });
+});
+
+/* ── PROGRESS BARS & COUNTERS ── */
+const readingBar = document.getElementById('reading-progress-bar');
+const progressTracker = document.getElementById('progress-tracker');
+const backToTop = document.getElementById('back-to-top');
+const exportBtn = document.getElementById('export-btn');
+const sectionCounter = document.getElementById('section-counter');
+const csbBanner = document.getElementById('current-section-banner');
+
+const sectionNames = {
+  home: 'الرئيسية', intro: 'التحول الرقمي',
+  toc: 'الفهرس', features: 'المزايا التقنية', 
+  journey: 'رحلة المستفيد', structure: 'الهيكل الإداري', 
+  permissions: 'صلاحيات النظام', 'final-word': 'رسالة المركز'
+};
+const sectionIds = Object.keys(sectionNames);
+
+function updateReadingProgress() {
+  const scrollTop = window.scrollY;
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
+  if (readingBar) readingBar.style.width = pct + '%';
+  if (progressTracker) {
+    const visH = Math.min(pct / 100 * (window.innerHeight - 100), window.innerHeight - 100);
+    progressTracker.style.height = visH + 'px';
+    progressTracker.classList.toggle('pt-visible', scrollTop > 200);
+  }
+  if (backToTop)  backToTop.classList.toggle('visible', scrollTop > 400);
+  if (exportBtn)  exportBtn.classList.toggle('visible', scrollTop > 200);
+  
+  let cur = '';
+  allSecs.forEach(s => { if (scrollTop >= s.offsetTop - 200) cur = s.id; });
+  if (sectionCounter && cur) {
+    const idx = sectionIds.indexOf(cur);
+    const name = sectionNames[cur] || cur;
+    sectionCounter.textContent = `${idx + 1} / ${sectionIds.length} — ${name}`;
+    sectionCounter.classList.toggle('sc-visible', scrollTop > 300);
+  }
+}
+window.addEventListener('scroll', updateReadingProgress, { passive: true });
+updateReadingProgress();
+
+let lastSection = '';
+window.addEventListener('scroll', () => {
+  let cur = '';
+  allSecs.forEach(s => { if (window.scrollY >= s.offsetTop - 150) cur = s.id; });
+  if (cur !== lastSection) {
+    lastSection = cur;
+    if (csbBanner) {
+      csbBanner.classList.remove('csb-active');
+      void csbBanner.offsetWidth;
+      if (cur) setTimeout(() => csbBanner.classList.add('csb-active'), 50);
+    }
+  }
+}, { passive: true });
+
+/* ── TOAST SYSTEM ── */
+const toastContainer = document.getElementById('toast-container');
+function showToast(icon, msg, duration=3000) {
+  if (!toastContainer) return;
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = `<span class="toast-icon">${icon}</span><span class="toast-text">${msg}</span>`;
+  toastContainer.appendChild(t);
+  setTimeout(() => {
+    t.classList.add('toast-out');
+    setTimeout(() => t.remove(), 300);
+  }, duration);
+}
+
+const toastShown = new Set();
+const sectionToasts = {
+  'toc':      { icon: '📑', msg: 'استعرض محتويات الدليل بضغطة زر' },
+  'features': { icon: '🤖', msg: 'أتمتة المهام وتكامل الأنظمة' },
+  'journey':  { icon: '🗺️', msg: 'رحلة حجز سلسة وفعّالة' },
+  'structure':{ icon: '👥', msg: 'فريق عمل متكامل لخدمتك' },
+  'permissions':{ icon: '🛡️', msg: 'صلاحيات دقيقة لأمان البيانات' }
+};
+const toastObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !toastShown.has(e.target.id)) {
+      const t = sectionToasts[e.target.id];
+      if (t) {
+        toastShown.add(e.target.id);
+        setTimeout(() => showToast(t.icon, t.msg), 400);
+      }
+    }
+  });
+}, { threshold: 0.15 });
+allSecs.forEach(s => { if (sectionToasts[s.id]) toastObs.observe(s); });
+
+/* ── CUSTOM CURSOR ── */
+const cursorDot = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+if (cursorDot && cursorRing && window.matchMedia('(hover: hover)').matches) {
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animateCursor() {
+    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+    cursorDot.style.left = mx + 'px'; cursorDot.style.top = my + 'px';
+    cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  })();
+  document.querySelectorAll('a, button, .flow-step, .tech-card, .org-box, .vip-item, .toc-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cursorRing.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => cursorRing.classList.remove('cursor-hover'));
+  });
+}
+
+/* ── AMBIENT CANVAS ── */
+(function initAmbientCanvas() {
+  const canvas = document.getElementById('ambient-canvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  let W = canvas.width, H = canvas.height;
+  window.addEventListener('resize', () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }, { passive: true });
+  const COLORS = ['rgba(201,168,76,', 'rgba(61,160,106,', 'rgba(245,217,122,'];
+  function mkParticle() { return { x: Math.random() * W, y: Math.random() * H, r: 0.5 + Math.random() * 1.5, vx: (Math.random() - 0.5) * 0.25, vy: -0.15 - Math.random() * 0.2, alpha: 0.04 + Math.random() * 0.08, color: COLORS[Math.floor(Math.random() * COLORS.length)] }; }
+  const particles = Array.from({ length: 55 }, mkParticle);
+  function drawAmbient() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -10) { Object.assign(p, mkParticle()); p.y = H + 5; }
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = p.color + p.alpha + ')'; ctx.fill();
+    });
+    requestAnimationFrame(drawAmbient);
+  }
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) drawAmbient();
+})();
+
+/* ── MAGNETIC HOVER & GLOW ── */
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('mousemove', e => {
+    const r = link.getBoundingClientRect();
+    link.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+    link.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+  });
+});
+
+/* ── KEYBOARD NAVIGATION ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' && e.altKey) {
+    e.preventDefault();
+    const cur = Array.from(allSecs).findIndex(s => window.scrollY < s.offsetTop + s.offsetHeight - 100);
+    const next = allSecs[cur === -1 ? 0 : Math.min(cur + 1, allSecs.length - 1)];
+    if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast('⬇', 'القسم التالي: ' + (sectionNames[next?.id] || ''), 1500);
+  }
+  if (e.key === 'ArrowUp' && e.altKey) {
+    e.preventDefault();
+    const cur = Array.from(allSecs).reverse().findIndex(s => window.scrollY > s.offsetTop + 100);
+    const prev = Array.from(allSecs).reverse()[cur === -1 ? 0 : Math.min(cur + 1, allSecs.length - 1)];
+    if (prev) prev.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast('⬆', 'القسم السابق: ' + (sectionNames[prev?.id] || ''), 1500);
+  }
+});
+
+/* ── HERO PARALLAX ── */
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const orb1 = document.querySelector('.orb-1');
+  const orb2 = document.querySelector('.orb-2');
+  const orb3 = document.querySelector('.orb-3');
+  if (orb1) orb1.style.transform = `translateY(${y * 0.12}px)`;
+  if (orb2) orb2.style.transform = `translateY(${y * -0.08}px)`;
+  if (orb3) orb3.style.transform = `translateY(${y * 0.06}px)`;
+}, { passive: true });
+
+/* ── TOC ITEMS CLICK TOAST ── */
+document.querySelectorAll('.toc-item').forEach(item => {
+  item.addEventListener('click', () => {
+    showToast('📍', 'جارٍ الانتقال...', 1500);
+  });
+});
+
+setTimeout(() => { showToast('📸', 'مرحباً بك في دليل منصة «تَزامُن» — اضغط Alt+↓ للتنقل', 5000); }, 1800);
+</script>
+</body>
+</html>
+
+```
 #action-buttons{position:fixed;top:1.25rem;left:1.25rem;z-index:60;display:flex;flex-direction:column;gap:.75rem}
 #downloadBtn{cursor:pointer;border:none;font-family:'Tajawal';font-weight:700;font-size:.95rem;color:var(--emerald-900);
     background:linear-gradient(135deg,var(--gold-400),var(--gold));padding:.85rem 1.5rem;border-radius:999px;
